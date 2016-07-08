@@ -1,0 +1,75 @@
+﻿<Page
+    x:Class="Nameday.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Nameday"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" RequestedTheme="Dark">
+    <Page.Resources>
+        <DataTemplate x:Key="NamedayModelTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Month, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="40"/>
+                <TextBlock Text="{Binding Day, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="40"/>
+                <ItemsControl ItemsSource="{Binding Names}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ContactExTemplate">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Ellipse Fill="{ThemeResource SystemControlBackgroundAccentBrush}" Height="100" VerticalAlignment="Top" Width="100"/>
+                <TextBlock Text="{Binding Initials, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32"/>
+                <Ellipse Fill="{Binding Picture, Mode=OneWay}" Height="100" VerticalAlignment="Top" Width="100"/>
+                <StackPanel Grid.Column="1" Margin="20,0,0,0" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Contact.FullName, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Button x:Name="btEmail" Content="Email" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{Binding EmailVisibility, Mode=OneWay}" Click="btEmail_Click"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarToggleButton x:Name="appBarToggleButton" Label="Enable reminders" IsChecked="{Binding Settings.NotificationsEnabled, Mode=TwoWay}"/>
+                <AppBarToggleButton x:Name="appBarToggleButton1" Label="Enable live tile" IsChecked="{Binding Settings.UpdatingLiveTileEnabled, Mode=TwoWay}"/>
+                <AppBarSeparator/>
+                <AppBarButton x:Name="appBarButton" Label="About" Click="appBarButton_Click"/>
+            </CommandBar.SecondaryCommands>
+            <AppBarButton Icon="Calendar" Label="Create reminder" Command="{Binding AddReminderCommand, Mode=OneWay}"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+    <Page.DataContext>
+        <local:MainPageData />
+    </Page.DataContext>
+
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="320"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="listView" ItemTemplate="{StaticResource NamedayModelTemplate}" ItemsSource="{Binding Namedays}" Grid.Row="1" SelectedItem="{Binding SelectedNameday, Mode=TwoWay}"/>
+            <TextBox x:Name="textBox" Margin="10,10,10,8" TextWrapping="Wrap" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" d:LayoutOverrides="Height" PlaceholderText="Search for names"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" 
+             Text="{Binding Greeting}" VerticalAlignment="Top"/>
+            <ScrollViewer Grid.Row="1">
+                <ItemsControl ItemsSource="{Binding Contacts}" ItemTemplate="{StaticResource ContactExTemplate}"/>
+            </ScrollViewer>
+        </Grid>
+
+    </Grid>
+</Page>

@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="Nameday.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Nameday"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" RequestedTheme="Dark">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel VerticalAlignment="Top" Margin="12,12,12,0">
+            <TextBlock x:Name="tbAppName" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="Wrap" Text="Nameday" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Opacity="0.595" Margin="0,20,0,0">
+            	<Run Text="Hi!"/>
+            	<LineBreak/>
+            	<Run/>
+            	<LineBreak/>
+            	<Run Text="This is a demo project for my Pluralsight course that can teach you how to develop Windows 10 applications with C# and XAML. Go to "/>
+            </TextBlock>
+            <HyperlinkButton NavigateUri="http://win10xaml.response.hu" Content="http://win10xaml.response.hu" />
+            <TextBlock Opacity="0.595">
+            	<Run Text="8to learn how this app has been created!"/>
+            	<LineBreak/>
+            	<Run/>
+            	<LineBreak/>
+            	<Run Text="Questions, comments? "/>
+            </TextBlock>
+            <HyperlinkButton NavigateUri="mailto:velvart.andras@response.hu" Content="Contact me!" />
+        </StackPanel>
+    </Grid>
+</Page>

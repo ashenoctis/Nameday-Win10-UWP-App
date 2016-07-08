@@ -1,0 +1,36 @@
+﻿<Page
+    x:Class="TemplatingWithStyleDemo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TemplatingWithStyleDemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Style x:Key="RedEllipseStyle" BasedOn="{StaticResource SemiTransparentEllipse}" TargetType="Ellipse">
+            <Setter Property="Fill" Value="Red"/>
+            <Setter Property="Stroke" Value="Black"/>
+            <Setter Property="StrokeThickness" Value="10"/>
+        </Style>
+        <Style TargetType="Ellipse" x:Key="SemiTransparentEllipse">
+            <Setter Property="Opacity" Value="0.5"/>
+        </Style>
+        <Style TargetType="Ellipse" BasedOn="{StaticResource SemiTransparentEllipse}" />
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Ellipse Margin="295,202,592,259" 
+          Style="{StaticResource RedEllipseStyle}"/>
+        <Ellipse HorizontalAlignment="Left" Margin="83,274,0,299" Width="115" Style="{StaticResource RedEllipseStyle}"/>
+        <Ellipse HorizontalAlignment="Left" Height="151" Margin="67,0,0,77" VerticalAlignment="Bottom" Width="321" Style="{StaticResource RedEllipseStyle}"/>
+        <Ellipse HorizontalAlignment="Right" Height="115" Margin="0,0,345,77" VerticalAlignment="Bottom" Width="283" Style="{StaticResource RedEllipseStyle}"/>
+        
+        <Ellipse HorizontalAlignment="Right" Height="100" Margin="0,247,390,0" Style="{StaticResource RedEllipseStyle}" VerticalAlignment="Top" Width="100" Fill="#FF0017FF"/>
+        
+        
+        <Ellipse HorizontalAlignment="Left" Height="100" Margin="438,0,0,92" Style="{StaticResource RedEllipseStyle}" VerticalAlignment="Bottom" Width="100"/>
+        <Ellipse Fill="#FF0017FF" HorizontalAlignment="Right" Height="291" Margin="0,56,160,0" VerticalAlignment="Top" Width="372"/>
+        <Ellipse Fill="#FF0017FF" HorizontalAlignment="Left" Margin="83,56,0,233" Width="529"/>
+
+    </Grid>
+</Page>
